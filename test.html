@@ -1,0 +1,44 @@
+<head>
+  <title>test</title>
+</head>
+
+<template name="AppLayout">
+  {{#famousContext id="mainCtx"}}
+    {{#Surface}}
+      <a href="/">Home</a>
+      <a href="/section">Section</a>
+    {{/Surface}}
+
+    {{#ContainerSurface translate='[0, 50, 0]'}}
+      {{> yield}}
+    {{/ContainerSurface}}
+  {{/famousContext}}
+</template>
+
+<template name="AppIndex">
+  {{#Surface}}
+    <p>AppIndex</p>
+  {{/Surface}}
+</template>
+
+<template name="AppSection">
+  {{#ContainerSurface}}
+    {{#Scrollview}}
+      {{#famousEach items}}
+        {{#ContainerSurface size='[undefined, 15]'}}
+          {{>ContainerSurface size='[undefined, 15]' template='AppSectionItem'}}
+        {{/ContainerSurface}}
+      {{/famousEach}}
+    {{/Scrollview}}
+  {{/ContainerSurface}}
+</template>
+
+<template name='AppSectionItem'>
+  {{#StateModifier size=reactiveSize origin='[.5, 0]' align='[.5, 0]' id='container_me'}}
+    {{#ContainerSurface}}
+      {{#Surface class='left' size='[25, 55]' origin='[0, 0]' align='[0, 0]' }}
+        <p>{{name}}</p>
+      {{/Surface}}
+    {{/ContainerSurface}}
+  {{/StateModifier}}
+</template>
